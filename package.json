@@ -1,0 +1,44 @@
+{
+    "name": "rigmarole",
+    "version": "1.0.0",
+    "description": "Handles undo and redo of a view model.",
+    "main": "rigmarole.js",
+    "scripts": {
+        "build": "webpack",
+        "test": "mocha --watch --compilers js:babel-register tests/**/*.spec.js",
+        "prepublish": "env NODE_ENV=production npm run build"
+    },
+    "files": [
+        "bin"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:rikunx/rigmarole.git"
+    },
+    "keywords": [
+        "immutable",
+        "data",
+        "structure",
+        "undo",
+        "redo"
+    ],
+    "author": "Bryan Duran",
+    "license": "ISC",
+    "devDependencies": {
+        "babel-core": "^6.20.0",
+        "babel-eslint": "6.1.0",
+        "babel-loader": "^6.2.9",
+        "babel-preset-es2015": "^6.18.0",
+        "babel-preset-stage-0": "6.5.0",
+        "chai": "^3.5.0",
+        "eslint": "^3.12.0",
+        "eslint-plugin-import": "^1.16.0",
+        "mocha": "^2.5.3",
+        "sinon": "^1.17.6",
+        "sinon-chai": "^2.8.0",
+        "webpack": "^3.3.0"
+    },
+    "dependencies": {
+        "seamless-immutable": "^7.1.3"
+    }
+}
