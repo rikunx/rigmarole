@@ -219,6 +219,22 @@ describe('rigmarole', () => {
             mutable.test = { food: 'buffet' };
             expect(mutable.e).to.equal('g');
             expect(mutable.test).to.eql({ food: 'buffet' });
+
+            viewModel.set('a', null);
+            try {
+                const a = viewModel.getMutable('a');
+                expect(a).to.not.exist;
+            } catch (error) {
+                expect(error).to.not.exist;
+            }
+
+            viewModel.set('a', 1);
+            try {
+                const a = viewModel.getMutable('a');
+                expect(a).to.equal(1);
+            } catch (error) {
+                expect(error).to.not.exist;
+            }
         });
     });
 
@@ -388,6 +404,7 @@ describe('rigmarole', () => {
 
                 const a = documentationModel.getMutable('a');
                 const b = documentationModel.getMutable('a.b');
+
                 expect(b).to.equal(3);
                 expect(a).to.eql({ b: 3 });
                 try {

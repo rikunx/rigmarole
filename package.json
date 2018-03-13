@@ -1,12 +1,12 @@
 {
     "name": "rigmarole",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Handles undo and redo of a view model.",
     "main": "rigmarole.js",
     "scripts": {
         "build": "webpack",
         "test": "mocha --watch --compilers js:babel-register tests/**/*.spec.js",
-        "prepublish": "env NODE_ENV=production npm run build"
+        "prepare": "env NODE_ENV=production npm run build"
     },
     "files": [
         "bin"

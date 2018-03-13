@@ -238,7 +238,7 @@ export default class rigmarole {
      */
     getMutable(keyPath, options = { deep: true }) {
         const value = this.get(keyPath);
-        if (typeof value === 'object')
+        if (value && typeof value === 'object')
             return Immutable.asMutable(value, options);
 
         return value;
