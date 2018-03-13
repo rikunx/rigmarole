@@ -237,7 +237,11 @@ export default class rigmarole {
      *  Simple helper function for getting a value at a known key path as a mutable object
      */
     getMutable(keyPath, options = { deep: true }) {
-        return Immutable.asMutable(this.get(keyPath), options);
+        const value = this.get(keyPath);
+        if (typeof value === 'object')
+            return Immutable.asMutable(value, options);
+
+        return value;
     }
 
     /*

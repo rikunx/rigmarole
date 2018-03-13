@@ -387,6 +387,8 @@ describe('rigmarole', () => {
                 documentationModel.set('a', { b: 3 });
 
                 const a = documentationModel.getMutable('a');
+                const b = documentationModel.getMutable('a.b');
+                expect(b).to.equal(3);
                 expect(a).to.eql({ b: 3 });
                 try {
                     a.b = 4;

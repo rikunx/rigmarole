@@ -1,6 +1,6 @@
 {
     "name": "rigmarole",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Handles undo and redo of a view model.",
     "main": "rigmarole.js",
     "scripts": {
