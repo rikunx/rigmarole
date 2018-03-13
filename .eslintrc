@@ -1,0 +1,47 @@
+parser: babel-eslint
+extends:
+  - 'eslint:recommended'
+  - 'plugin:import/errors'
+  - 'plugin:import/warnings'
+env:
+  es6: true
+  browser: true
+  node: true
+  mocha: true
+rules:
+  curly:
+    - off
+    - multi-or-nest
+  comma-dangle: warn
+  eol-last: warn
+  import/default: warn
+  import/no-named-as-default: warn
+  indent:
+    - warn
+    - 4
+    - SwitchCase: 1
+  keyword-spacing: warn
+  no-alert: warn
+  no-console: warn
+  no-constant-condition: warn
+  no-debugger: warn
+  no-empty: warn
+  no-empty-pattern: warn
+  no-extra-semi: warn
+  no-lone-blocks: off
+  no-mixed-spaces-and-tabs: warn
+  no-trailing-spaces: warn
+  no-underscore-dangle: off
+  no-unused-vars: warn
+  no-unreachable: warn
+  no-var: warn
+  prefer-const: warn
+  quotes:
+    - warn
+    - single
+    - avoidEscape: true
+      allowTemplateLiterals: true
+  strict: 1
+  semi:
+    - warn
+globals: {}
