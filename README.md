@@ -12,7 +12,7 @@ import rigmarole from 'rigmarole';
 ```
 ### CommonJS
 ```
-const rigmarole = require('rigmarole').default;
+const rigmarole = require('rigmarole');
 ```
 
 ### Browser
