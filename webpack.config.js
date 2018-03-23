@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const outputPath = 'lib';
+
 const common = {
     entry: './rigmarole.js',
     module: {
@@ -17,7 +19,7 @@ const common = {
 
 const es6Module = {
     output: {
-        path: path.resolve(__dirname, 'bin'),
+        path: path.resolve(__dirname, outputPath),
         filename: 'index.js',
         library: 'rigmarole',
         libraryTarget: 'umd',
@@ -28,7 +30,7 @@ const es6Module = {
 
 const browser = {
     output: {
-        path: path.resolve(__dirname, 'bin'),
+        path: path.resolve(__dirname, outputPath),
         filename: 'rigmarole.js',
         library: 'rigmarole',
         libraryTarget: 'var',
