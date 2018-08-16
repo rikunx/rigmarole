@@ -79,7 +79,7 @@ describe('rigmarole', () => {
 
     describe('operation', () => {
         it('should properly add to the history stack while performing any mutate action', () => {
-            viewModel.set('a', {'b': 2});
+            viewModel.set('a', { 'b': 2 });
 
             expect(viewModel._history.length).to.equal(1);
             viewModel.operation('a', (state) => ({ a: 'b' }));
@@ -98,7 +98,7 @@ describe('rigmarole', () => {
                     test: 'test'
                 }
             });
-            viewModel.set('b', {d: {test: 'test'}});
+            viewModel.set('b', { d: { test: 'test' } });
             expect(viewModel.get('a')).to.eql(2);
             expect(viewModel.get('b.d.test')).to.eql('test');
 
@@ -171,7 +171,7 @@ describe('rigmarole', () => {
         });
 
         it('should properly delete an index from an array and add to the history stack', () => {
-            const testArray = [{ a: 'test'}, 2, { b: 'thing' }, 4, 5, 6, 7, { foo: 'bar' }];
+            const testArray = [{ a: 'test' }, 2, { b: 'thing' }, 4, 5, 6, 7, { foo: 'bar' }];
             viewModel.set(['a', 'array'], testArray);
             viewModel.delete(['a', 'array', '1']);
             expect(viewModel.get(['a', 'array', '1'])).to.eql(testArray[2]);
@@ -196,7 +196,13 @@ describe('rigmarole', () => {
             expect(viewModel.get('a.b')).to.equal('hello');
 
             viewModel.set('a.b.c.d', { e: 'f' });
-            expect(viewModel.get('a.b')).to.eql({c: { d: { e: 'f'} } });
+            const immutable = viewModel.get('a.b');
+            try {
+                immutable.c = 2;
+            } catch (error) {
+                expect(error).to.exist;
+            }
+            expect(viewModel.get('a.b')).to.eql({ c: { d: { e: 'f' } } });
         });
     });
 
@@ -329,7 +335,7 @@ describe('rigmarole', () => {
                 documentationModel.set('user.firstName', 'Anon');
                 documentationModel.set('user.lastName', 'Ymous');
 
-                documentationModel.set('user', { firstName: 'Test', lastName: 'McTester'});
+                documentationModel.set('user', { firstName: 'Test', lastName: 'McTester' });
 
                 expect(documentationModel.get('user.firstName')).to.equal('Test');
                 expect(documentationModel.get('user.lastName')).to.equal('McTester');
@@ -346,10 +352,9 @@ describe('rigmarole', () => {
             });
 
             it('should validate manual manipulation', () => {
-                documentationModel.operation('test.path', (state) => ({
-                    ...state,
-                    some: { sort: { of: { update: true } } }
-                }));
+                documentationModel.operation('test.path', (state) => {
+                    return Object.assign({}, state, { some: { sort: { of: { update: true } } } });
+                });
 
                 expect(documentationModel.get('test')).to.not.exist;
                 expect(documentationModel.get('some.sort.of.update')).to.be.true;
@@ -393,8 +398,7 @@ describe('rigmarole', () => {
                 expect(a).to.eql({ b: 3 });
                 try {
                     a.b = 4;
-                }
-                catch (error) {
+                } catch (error) {
                     expect(error).to.exist;
                 }
             });
@@ -410,15 +414,14 @@ describe('rigmarole', () => {
                 try {
                     a.b = 4;
                     expect(a.b).to.equal(4);
-                }
-                catch (error) {
+                } catch (error) {
                     expect(error).to.not.exist;
                 }
             });
 
             it('should validate undo/redo', () => {
                 documentationModel.set('user', {});
-                documentationModel.set('user', { firstName: 'Test', lastName: 'McTester'});
+                documentationModel.set('user', { firstName: 'Test', lastName: 'McTester' });
                 documentationModel.replace('user.firstName', 'Anon');
                 documentationModel.set('user.lastName', 'Ymous');
 

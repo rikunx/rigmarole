@@ -103,6 +103,7 @@ Retrieves a value at a known key path.
 stateStack.set('a', { b: 3 });
 const a = stateStack.get('a');
 a.b = 4; // should print an error similar to "TypeError: Cannot assign to read only property 'b' of object '#<Object>'"
+console.log(a.b) // prints 3
 ```
 
 ### getMutable
@@ -110,7 +111,8 @@ Retrieves a value at a known key path as a mutable object.
 ```
 stateStack.set('a', { b: 3 });
 const a = stateStack.getMutable('a');
-a.b = 4; // should print an error similar to "TypeError: Cannot assign to read only property 'b' of object '#<Object>'"
+a.b = 4; // should not print an error
+console.log(a.b) // prints 4
 ```
 
 ### undo

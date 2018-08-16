@@ -4,17 +4,23 @@ const path = require('path');
 const outputPath = 'lib';
 
 const common = {
+    mode: 'production',
     entry: './rigmarole.js',
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader'
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['babel-preset-env']
+                }
+            },
+            exclude: /node_modules/
         }]
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin()
-    ]
+    optimization: {
+        minimize: true
+    }
 };
 
 const es6Module = {
