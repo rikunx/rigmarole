@@ -30,7 +30,8 @@ const es6Module = {
         library: 'rigmarole',
         libraryTarget: 'umd',
         umdNamedDefine: true,
-        libraryExport: 'default'
+        libraryExport: 'default',
+        globalObject: 'this'
     }
 };
 
